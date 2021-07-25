@@ -21,6 +21,7 @@ class GameBoard extends Component {
                         <td></td>
                     </tr>
                 </table>
+                <h2 className="turn-tracker"></h2>
             </div>
         );
     }
