@@ -19,5 +19,6 @@ describe('on start', () => {
     test('displays whose turn it is to go first', () => {
         const wrapper = shallow(<GameBoard />);
         expect(wrapper.find('.turn-tracker').exists()).toBe(true);
+        expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
 });
