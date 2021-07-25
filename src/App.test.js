@@ -4,7 +4,7 @@ import App from './App';
 
 configure({ adapter: new Adapter() });
 
-test('renders the game board', () => {
+test('renders the game board component', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find('#game-board').exists()).toBe(true);
+    expect(wrapper.find('GameBoard').exists()).toBe(true);
 });
