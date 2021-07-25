@@ -6,5 +6,5 @@ configure({ adapter: new Adapter() });
 
 test('renders the game board', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find('#game-board').exists()).toBeTruthy();
+    expect(wrapper.find('#game-board').exists()).toBe(true);
 });
