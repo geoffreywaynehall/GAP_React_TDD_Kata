@@ -15,4 +15,9 @@ describe('on start', () => {
             expect(cell.text()).toBe("");
         })
     });
+
+    test('displays whose turn it is to go first', () => {
+        const wrapper = shallow(<GameBoard />);
+        expect(wrapper.find('.turn-tracker').exists()).toBe(true);
+    });
 });
