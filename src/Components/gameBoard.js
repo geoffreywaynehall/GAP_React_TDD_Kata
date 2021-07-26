@@ -1,3 +1,4 @@
+import '../Style/gameBoard.css';
 import React, { Component } from "react";
 
 class GameBoard extends Component {
@@ -7,17 +8,17 @@ class GameBoard extends Component {
                 <table>
                     <tr>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
+                        <td className="vertical"></td>
                         <td></td>
                     </tr>
                     <tr>
+                        <td className="horizontal"></td>
+                        <td className="horizontal vertical"></td>
+                        <td className="horizontal"></td>
+                    </tr>
+                    <tr>
                         <td></td>
-                        <td></td>
+                        <td className="vertical"></td>
                         <td></td>
                     </tr>
                 </table>

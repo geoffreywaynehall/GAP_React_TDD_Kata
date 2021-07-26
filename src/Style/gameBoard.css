@@ -1,0 +1,18 @@
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 50px;
+    height: 50px;
+}
+
+.vertical {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.horizontal {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
