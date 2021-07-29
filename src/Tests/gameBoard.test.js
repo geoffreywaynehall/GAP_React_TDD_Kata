@@ -23,16 +23,15 @@ describe('on start', () => {
 
     test('displays whose turn it is to go first', () => {
         const turnTracker = wrapper.find('.turn-tracker');
-        expect(turnTracker.exists()).toBe(true);
-        expect(turnTracker.text()).toBe("It is X's turn to go!");
+        expect(wrapper.find('.turn-tracker').exists()).toBe(true);
+        expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
 });
 
 describe('during gameplay', () => {
     test('the first player to click a square will cause an "X" to appear on that square', () => {
-        const firstSquare = wrapper.find('#square-0');
-        firstSquare.simulate('click');
-        expect(firstSquare.text()).toBe('X');
+        wrapper.find('#square-0').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('X');
     });
 
     test('the turn tracker is updated', () => {
@@ -42,16 +41,14 @@ describe('during gameplay', () => {
 
     test('the second player to click a different square will cause an "O" to appear on that square', () => {
         wrapper.find('#square-0').simulate('click');
-        const secondSquare = wrapper.find('#square-1');
-        secondSquare.simulate('click');
-        expect(secondSquare.text()).toBe('O');
+        wrapper.find('#square-1').simulate('click');
+        expect(wrapper.find('#square-1').text()).toBe('O');
     });
 
     test('clicking the same square twice will not count as a turn', () => {
-        const firstSquare = wrapper.find('#square-0');
-        firstSquare.simulate('click');
-        firstSquare.simulate('click');
-        expect(firstSquare.text()).toBe('X');
+        wrapper.find('#square-0').simulate('click');
+        wrapper.find('#square-0').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('X');
         expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
     });
 });
