@@ -5,9 +5,18 @@ class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
-            tile: '',
+            tiles: ['','','','','','','','',''],
             turn: 'X'
         };
+    }
+
+    move(square: Number) {
+        let oldTiles = this.state.tiles;
+        oldTiles[square] = this.state.turn;
+        this.setState({
+            tiles: oldTiles,
+            turn: this.state.turn === 'X' ? 'O' : 'X'
+        })
     }
 
     render() {
@@ -16,8 +25,8 @@ class GameBoard extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td id="square-0" onClick={() => this.setState({ tile: 'X', turn: 'O' })}>{ this.state.tile }</td>
-                            <td className="vertical"></td>
+                            <td id="square-0" onClick={() => this.move(0)}>{ this.state.tiles[0] }</td>
+                            <td id="square-1" onClick={() => this.move(1)} className="vertical">{this.state.tiles[1]}</td>
                             <td></td>
                         </tr>
                         <tr>
