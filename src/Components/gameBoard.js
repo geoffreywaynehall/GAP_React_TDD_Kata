@@ -11,12 +11,14 @@ class GameBoard extends Component {
     }
 
     move(square: Number) {
-        let oldTiles = this.state.tiles;
-        oldTiles[square] = this.state.turn;
-        this.setState({
-            tiles: oldTiles,
-            turn: this.state.turn === 'X' ? 'O' : 'X'
-        })
+        if (this.state.tiles[square] === '') {
+            let oldTiles = this.state.tiles;
+            oldTiles[square] = this.state.turn;
+            this.setState({
+                tiles: oldTiles,
+                turn: this.state.turn === 'X' ? 'O' : 'X'
+            });
+        }
     }
 
     render() {
