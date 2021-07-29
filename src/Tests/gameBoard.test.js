@@ -35,4 +35,11 @@ describe('during gameplay', () => {
         wrapper.find('#square-0').simulate('click');
         expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
     });
+
+    test('the second player to click a different square will cause an "O" to appear on that square', () => {
+        const wrapper = shallow(<GameBoard />);
+        wrapper.find('#square-0').simulate('click');
+        wrapper.find('#square-1').simulate('click');
+        expect(wrapper.find('#square-1').text()).toBe('O');
+    });
 });
