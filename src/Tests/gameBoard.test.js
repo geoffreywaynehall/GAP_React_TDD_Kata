@@ -42,4 +42,11 @@ describe('during gameplay', () => {
         wrapper.find('#square-1').simulate('click');
         expect(wrapper.find('#square-1').text()).toBe('O');
     });
+
+    test('clicking the same square twice will not count as a turn', () => {
+        const wrapper = shallow(<GameBoard />);
+        wrapper.find('#square-0').simulate('click');
+        wrapper.find('#square-0').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('X');
+    });
 });
