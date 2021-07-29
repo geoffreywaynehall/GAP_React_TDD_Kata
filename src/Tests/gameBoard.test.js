@@ -51,4 +51,14 @@ describe('during gameplay', () => {
         expect(wrapper.find('#square-0').text()).toBe('X');
         expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
     });
+
+    test('all the squares can be clicked until they are all filled', () => {
+        const turnOrder = [0, 1, 2, 6, 7, 8, 3, 4, 5];
+        let turn = 'X';
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+            expect(wrapper.find('#square-' + square).text()).toBe(turn);
+            turn = turn === 'X' ? 'O' : 'X';
+        })
+    });
 });
