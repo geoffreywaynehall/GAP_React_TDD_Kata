@@ -22,3 +22,11 @@ describe('on start', () => {
         expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
 });
+
+describe('during gameplay', () => {
+    test('the first player to click a square will cause an "X" to appear on that square', () => {
+        const wrapper = shallow(<GameBoard />);
+        wrapper.find('#square-0').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('X');
+    });
+});
