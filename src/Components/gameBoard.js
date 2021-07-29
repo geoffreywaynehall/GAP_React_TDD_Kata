@@ -5,7 +5,8 @@ class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
-            tile: ''
+            tile: '',
+            turn: 'X'
         };
     }
 
@@ -15,7 +16,7 @@ class GameBoard extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td id="square-0" onClick={() => this.setState({ tile: 'X' })}>{ this.state.tile }</td>
+                            <td id="square-0" onClick={() => this.setState({ tile: 'X', turn: 'O' })}>{ this.state.tile }</td>
                             <td className="vertical"></td>
                             <td></td>
                         </tr>
@@ -31,7 +32,7 @@ class GameBoard extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <h2 className="turn-tracker">It is X's turn to go!</h2>
+                <h2 className="turn-tracker">It is { this.state.turn }'s turn to go!</h2>
             </div>
         );
     }
