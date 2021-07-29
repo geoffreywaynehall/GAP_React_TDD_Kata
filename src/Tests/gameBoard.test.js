@@ -29,4 +29,10 @@ describe('during gameplay', () => {
         wrapper.find('#square-0').simulate('click');
         expect(wrapper.find('#square-0').text()).toBe('X');
     });
+
+    test('the turn tracker is updated', () => {
+        const wrapper = shallow(<GameBoard />);
+        wrapper.find('#square-0').simulate('click');
+        expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
+    });
 });
