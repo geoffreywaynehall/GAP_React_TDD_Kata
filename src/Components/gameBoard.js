@@ -14,6 +14,7 @@ class GameBoard extends Component {
 
     checkForWin(tiles) {
         this.checkVertical(tiles);
+        this.checkHorizontal(tiles);
     }
 
     checkVertical(tiles) {
@@ -28,6 +29,22 @@ class GameBoard extends Component {
         } else if (tiles[2] === tiles[5] && tiles[5] === tiles[8]) {
             this.setState({
                 win: tiles[2]
+            });
+        }
+    }
+
+    checkHorizontal(tiles) {
+        if (tiles[0] === tiles[1] && tiles[1] === tiles[2]) {
+            this.setState({
+                win: tiles[0]
+            });
+        } else if (tiles[3] === tiles[4] && tiles[4] === tiles[5]) {
+            this.setState({
+                win: tiles[3]
+            });
+        } else if (tiles[6] === tiles[7] && tiles[7] === tiles[8]) {
+            this.setState({
+                win: tiles[6]
             });
         }
     }
