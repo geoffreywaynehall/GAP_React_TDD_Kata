@@ -30,6 +30,10 @@ describe('on start', () => {
     test('the user can not undo on the first turn', () => {
         expect(wrapper.find('#undo-button').exists()).toBe(false);
     });
+
+    test('the user can not reset on the first turn', () => {
+        expect(wrapper.find('#reset-button').exists()).toBe(false);
+    });
 });
 
 describe('during gameplay', () => {
@@ -99,5 +103,6 @@ describe('during gameplay', () => {
         wrapper.find('#undo-button').simulate('click');
         expect(wrapper.find('#square-0').text()).toBe('X');
         expect(wrapper.find('#square-1').text()).toBe('');
+        expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
     });
 });
