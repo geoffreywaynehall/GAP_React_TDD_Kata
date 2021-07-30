@@ -132,4 +132,12 @@ describe('end of game', () => {
         })
         expect(wrapper.find('.turn-tracker').text()).toBe("O WINS!");
     });
+
+    test('a user wins if they get three in a row diagonally', () => {
+        const turnOrder = [0, 1, 4, 2, 8];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        expect(wrapper.find('.turn-tracker').text()).toBe("X WINS!");
+    });
 });
