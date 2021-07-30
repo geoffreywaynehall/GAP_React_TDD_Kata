@@ -71,5 +71,6 @@ describe('during gameplay', () => {
         turnOrder.forEach((square) => {
             expect(wrapper.find('#square-' + square).text()).toBe('');
         })
+        expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
 });
