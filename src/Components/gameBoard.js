@@ -5,6 +5,7 @@ class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
+            previousTiles: ['', '', '', '', '', '', '', '', ''],
             tiles: ['','','','','','','','',''],
             turn: 'X'
         };
@@ -13,9 +14,11 @@ class GameBoard extends Component {
     move(square: Number) {
         if (this.state.tiles[square] === '') {
             let oldTiles = this.state.tiles;
-            oldTiles[square] = this.state.turn;
+            let newTiles = oldTiles.slice();
+            newTiles[square] = this.state.turn;
             this.setState({
-                tiles: oldTiles,
+                previousTiles: oldTiles,
+                tiles: newTiles,
                 turn: this.state.turn === 'X' ? 'O' : 'X'
             });
         }
@@ -25,6 +28,12 @@ class GameBoard extends Component {
         this.setState({
             tiles: ['', '', '', '', '', '', '', '', ''],
             turn: 'X'
+        });
+    }
+
+    undo() {
+        this.setState({
+            tiles: this.state.previousTiles
         });
     }
 
@@ -51,6 +60,7 @@ class GameBoard extends Component {
                     </tbody>
                 </table>
                 <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2>
+                <button id="undo-button" onClick={() => this.undo()}>Undo</button>
                 <button id="reset-button" onClick={() => this.reset()}>Reset</button>
             </div>
         );
