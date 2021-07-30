@@ -33,7 +33,8 @@ class GameBoard extends Component {
 
     undo() {
         this.setState({
-            tiles: this.state.previousTiles
+            tiles: this.state.previousTiles,
+            turn: this.state.turn === 'X' ? 'O' : 'X'
         });
     }
 
