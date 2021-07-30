@@ -86,7 +86,8 @@ class GameBoard extends Component {
         this.setState({
             previousTiles: [],
             tiles: ['', '', '', '', '', '', '', '', ''],
-            turn: 'X'
+            turn: 'X',
+            win: ''
         });
     }
 
