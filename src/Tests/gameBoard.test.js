@@ -140,4 +140,12 @@ describe('end of game', () => {
         })
         expect(wrapper.find('.turn-tracker').text()).toBe("X WINS!");
     });
+
+    test('if the board is filled without three in a row', () => {
+        const turnOrder = [0, 1, 2, 6, 7, 8, 3, 4, 5];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        expect(wrapper.find('.turn-tracker').text()).toBe("TIE!");
+    });
 });
