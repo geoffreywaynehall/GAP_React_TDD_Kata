@@ -106,3 +106,13 @@ describe('during gameplay', () => {
         expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
     });
 });
+
+describe('end of game', () => {
+    test('a user wins if they get three in a row', () => {
+        const turnOrder = [0, 1, 3, 4, 6];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        expect(wrapper.find('.turn-tracker').text()).toBe("X WINS!");
+    });
+});
