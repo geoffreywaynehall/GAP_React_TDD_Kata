@@ -21,6 +21,12 @@ class GameBoard extends Component {
         }
     }
 
+    reset() {
+        this.setState({
+            tiles: ['', '', '', '', '', '', '', '', '']
+        });
+    }
+
     render() {
         return (
             <div className="GameBoard">
@@ -43,7 +49,8 @@ class GameBoard extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <h2 className="turn-tracker">It is { this.state.turn }'s turn to go!</h2>
+                <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2>
+                <button id="reset-button" onClick={() => this.reset()}>Reset</button>
             </div>
         );
     }
