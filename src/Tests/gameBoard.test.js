@@ -61,4 +61,15 @@ describe('during gameplay', () => {
             turn = turn === 'X' ? 'O' : 'X';
         })
     });
+
+    test('the game is reset when the user clicks the "Reset" button', () => {
+        const turnOrder = [0, 1, 2];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        wrapper.find('#reset-button').simulate('click');
+        turnOrder.forEach((square) => {
+            expect(wrapper.find('#square-' + square).text()).toBe('');
+        })
+    });
 });
