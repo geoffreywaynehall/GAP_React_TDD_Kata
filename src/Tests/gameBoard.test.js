@@ -74,7 +74,7 @@ describe('during gameplay', () => {
         expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
 
-    test('the game is reset when the user clicks the "Undo" button', () => {
+    test('the game is reset to the previous turn when the user clicks the "Undo" button', () => {
         const turnOrder = [0, 1, 2];
         turnOrder.forEach((square) => {
             wrapper.find('#square-' + square).simulate('click');
@@ -84,5 +84,16 @@ describe('during gameplay', () => {
         expect(wrapper.find('#square-1').text()).toBe('O');
         expect(wrapper.find('#square-2').text()).toBe('');
         expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
+    });
+
+    test('the user can undo multiple turns by clicking the "Undo" button more than once', () => {
+        const turnOrder = [0, 1, 2];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        wrapper.find('#undo-button').simulate('click');
+        wrapper.find('#undo-button').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('X');
+        expect(wrapper.find('#square-1').text()).toBe('');
     });
 });
