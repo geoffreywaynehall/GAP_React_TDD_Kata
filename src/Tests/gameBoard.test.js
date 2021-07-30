@@ -105,6 +105,15 @@ describe('during gameplay', () => {
         expect(wrapper.find('#square-1').text()).toBe('');
         expect(wrapper.find('.turn-tracker').text()).toBe("It is O's turn to go!");
     });
+
+    test('the user can not undo after clicking the "Reset" button', () => {
+        const turnOrder = [0, 1, 2];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        wrapper.find('#reset-button').simulate('click');
+        expect(wrapper.find('#undo-button').exists()).toBe(false);
+    });
 });
 
 describe('end of game', () => {
