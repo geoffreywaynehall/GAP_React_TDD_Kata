@@ -23,7 +23,8 @@ class GameBoard extends Component {
 
     reset() {
         this.setState({
-            tiles: ['', '', '', '', '', '', '', '', '']
+            tiles: ['', '', '', '', '', '', '', '', ''],
+            turn: 'X'
         });
     }
 
