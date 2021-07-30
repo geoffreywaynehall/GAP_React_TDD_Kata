@@ -65,8 +65,8 @@ class GameBoard extends Component {
                     </tbody>
                 </table>
                 <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2>
-                <button id="reset-button" onClick={() => this.reset()}>Reset</button>
                 { this.state.previousTiles.length > 0 ? <button id="undo-button" onClick={() => this.undo()}>Undo</button> : null }
+                {this.state.previousTiles.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null }
             </div>
         );
     }
