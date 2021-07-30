@@ -148,4 +148,13 @@ describe('end of game', () => {
         })
         expect(wrapper.find('.turn-tracker').text()).toBe("TIE!");
     });
+
+    test('the turn tracker is reset when resetting after a win', () => {
+        const turnOrder = [0, 1, 3, 4, 6];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        wrapper.find('#reset-button').simulate('click');
+        expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
+    });
 });
