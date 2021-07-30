@@ -16,6 +16,11 @@ class GameBoard extends Component {
         this.checkVertical(tiles);
         this.checkHorizontal(tiles);
         this.checkDiagonal(tiles);
+        if (this.state.previousTiles.length == 8 && this.state.win === '') {
+            this.setState({
+                win: 'TIE'
+            });
+        }
     }
 
     checkVertical(tiles) {
@@ -117,7 +122,7 @@ class GameBoard extends Component {
                         </tr>
                     </tbody>
                 </table>
-                { this.state.win === '' ? <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2> : <h2 className="turn-tracker">{this.state.win} WINS!</h2> }
+                { this.state.win === '' ? <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2> : this.state.win === 'TIE' ? <h2 className="turn-tracker">TIE!</h2> : <h2 className="turn-tracker">{this.state.win} WINS!</h2> }
                 { this.state.previousTiles.length > 0 ? <button id="undo-button" onClick={() => this.undo()}>Undo</button> : null }
                 { this.state.previousTiles.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null }
             </div>
