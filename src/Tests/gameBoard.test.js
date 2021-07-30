@@ -117,11 +117,19 @@ describe('during gameplay', () => {
 });
 
 describe('end of game', () => {
-    test('a user wins if they get three in a row verticaly', () => {
+    test('a user wins if they get three in a row vertically', () => {
         const turnOrder = [0, 1, 3, 4, 6];
         turnOrder.forEach((square) => {
             wrapper.find('#square-' + square).simulate('click');
         })
         expect(wrapper.find('.turn-tracker').text()).toBe("X WINS!");
+    });
+
+    test('a user wins if they get three in a row horizontally', () => {
+        const turnOrder = [0, 3, 6, 4, 8, 5];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        expect(wrapper.find('.turn-tracker').text()).toBe("O WINS!");
     });
 });
