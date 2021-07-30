@@ -16,7 +16,7 @@ class GameBoard extends Component {
         this.checkVertical(tiles);
         this.checkHorizontal(tiles);
         this.checkDiagonal(tiles);
-        if (this.state.previousTiles.length == 8 && this.state.win === '') {
+        if (this.state.previousTiles.length === 8 && this.state.win === '') {
             this.setState({
                 win: 'TIE'
             });
