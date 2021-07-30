@@ -73,4 +73,15 @@ describe('during gameplay', () => {
         })
         expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
+
+    test('the game is reset when the user clicks the "Reset" button', () => {
+        const turnOrder = [0, 1, 2];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        wrapper.find('#undo-button').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('X');
+        expect(wrapper.find('#square-1').text()).toBe('O');
+        expect(wrapper.find('#square-2').text()).toBe('');
+    });
 });
