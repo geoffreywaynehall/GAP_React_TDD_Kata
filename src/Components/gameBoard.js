@@ -5,7 +5,7 @@ class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
-            previousTiles: ['', '', '', '', '', '', '', '', ''],
+            previousTiles: [],
             tiles: ['','','','','','','','',''],
             turn: 'X'
         };
@@ -13,8 +13,9 @@ class GameBoard extends Component {
 
     move(square: Number) {
         if (this.state.tiles[square] === '') {
-            let oldTiles = this.state.tiles;
-            let newTiles = oldTiles.slice();
+            let oldTiles = this.state.previousTiles;
+            oldTiles.push(this.state.tiles);
+            let newTiles = this.state.tiles.slice();
             newTiles[square] = this.state.turn;
             this.setState({
                 previousTiles: oldTiles,
@@ -32,8 +33,11 @@ class GameBoard extends Component {
     }
 
     undo() {
+        let previousTiles = this.state.previousTiles;
+        let tiles = previousTiles.pop();
         this.setState({
-            tiles: this.state.previousTiles,
+            previousTiles: previousTiles,
+            tiles: tiles,
             turn: this.state.turn === 'X' ? 'O' : 'X'
         });
     }
