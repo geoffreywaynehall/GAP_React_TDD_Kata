@@ -26,6 +26,11 @@ describe('on start', () => {
         expect(wrapper.find('.turn-tracker').exists()).toBe(true);
         expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
+
+    test('the user can not undo on the first turn', () => {
+        wrapper.find('#undo-button').simulate('click');
+        expect(wrapper.find('#square-0').text()).toBe('');
+    });
 });
 
 describe('during gameplay', () => {
