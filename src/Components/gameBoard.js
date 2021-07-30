@@ -7,8 +7,29 @@ class GameBoard extends Component {
         this.state = {
             previousTiles: [],
             tiles: ['','','','','','','','',''],
-            turn: 'X'
+            turn: 'X',
+            win: ''
         };
+    }
+
+    checkForWin(tiles) {
+        this.checkVertical(tiles);
+    }
+
+    checkVertical(tiles) {
+        if (tiles[0] === tiles[3] && tiles[3] === tiles[6]) {
+            this.setState({
+                win: tiles[0]
+            });
+        } else if (tiles[1] === tiles[4] && tiles[4] === tiles[7]) {
+            this.setState({
+                win: tiles[1]
+            });
+        } else if (tiles[2] === tiles[5] && tiles[5] === tiles[8]) {
+            this.setState({
+                win: tiles[2]
+            });
+        }
     }
 
     move(square: Number) {
@@ -22,6 +43,7 @@ class GameBoard extends Component {
                 tiles: newTiles,
                 turn: this.state.turn === 'X' ? 'O' : 'X'
             });
+            this.checkForWin(newTiles);
         }
     }
 
@@ -64,9 +86,9 @@ class GameBoard extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2>
+                { this.state.win === '' ? <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2> : <h2 className="turn-tracker">{this.state.win} WINS!</h2> }
                 { this.state.previousTiles.length > 0 ? <button id="undo-button" onClick={() => this.undo()}>Undo</button> : null }
-                {this.state.previousTiles.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null }
+                { this.state.previousTiles.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null }
             </div>
         );
     }

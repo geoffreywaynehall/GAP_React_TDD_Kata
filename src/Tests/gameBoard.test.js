@@ -108,7 +108,7 @@ describe('during gameplay', () => {
 });
 
 describe('end of game', () => {
-    test('a user wins if they get three in a row', () => {
+    test('a user wins if they get three in a row verticaly', () => {
         const turnOrder = [0, 1, 3, 4, 6];
         turnOrder.forEach((square) => {
             wrapper.find('#square-' + square).simulate('click');
