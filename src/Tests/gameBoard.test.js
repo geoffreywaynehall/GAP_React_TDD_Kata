@@ -28,8 +28,7 @@ describe('on start', () => {
     });
 
     test('the user can not undo on the first turn', () => {
-        wrapper.find('#undo-button').simulate('click');
-        expect(wrapper.find('#square-0').text()).toBe('');
+        expect(wrapper.find('#undo-button').exists()).toBe(false);
     });
 });
 
