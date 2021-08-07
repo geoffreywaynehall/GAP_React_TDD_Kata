@@ -16,11 +16,6 @@ class GameBoard extends Component {
         this.checkVertical(tiles);
         this.checkHorizontal(tiles);
         this.checkDiagonal(tiles);
-        if (this.state.previousTiles.length === 9 && this.state.win === '') {
-            this.setState({
-                win: 'TIE'
-            });
-        }
     }
 
     checkVertical(tiles) {
@@ -64,7 +59,13 @@ class GameBoard extends Component {
             this.setState({
                 win: tiles[2]
             });
-        } 
+        } else {
+            if (!tiles.includes('') && this.state.win === '') {
+                this.setState({
+                    win: 'TIE'
+                });
+            }
+        }
     }
 
     move(square: Number) {
