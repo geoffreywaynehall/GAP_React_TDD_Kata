@@ -175,4 +175,14 @@ describe('end of game', () => {
         })
         expect(wrapper.find('#square-7').text()).toBe("");
     });
+
+    test('the undo is clicked after a win the user can continue to play', () => {
+        const turnOrder = [0, 1, 3, 4, 6];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        wrapper.find('#undo-button').simulate('click');
+        wrapper.find('#square-7').simulate('click');
+        expect(wrapper.find('#square-7').text()).toBe("X");
+    });
 });
