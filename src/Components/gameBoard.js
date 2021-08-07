@@ -68,7 +68,7 @@ class GameBoard extends Component {
     }
 
     move(square: Number) {
-        if (this.state.tiles[square] === '') {
+        if (this.state.tiles[square] === '' && this.state.win === '') {
             let oldTiles = this.state.previousTiles;
             oldTiles.push(this.state.tiles);
             let newTiles = this.state.tiles.slice();
