@@ -1,1 +1,8 @@
+body {
+    font-family: cursive;
+    background: repeating-linear-gradient( #f8f8ff, #f8f8ff 40px, #ADD8E6 40px, #ADD8E6 41px );
+}
 
+.title {
+    text-align: center;
+}

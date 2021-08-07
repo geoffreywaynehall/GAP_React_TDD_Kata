@@ -1,10 +1,13 @@
 table {
     border-collapse: collapse;
+    margin: auto;
 }
 
 td {
     width: 50px;
     height: 50px;
+    text-align: center;
+    font-size: 30px;
 }
 
 .vertical {
@@ -15,4 +18,29 @@ td {
 .horizontal {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
+}
+
+.turn-tracker {
+    text-align: center;
+}
+
+.controls {
+    display: table;
+    margin: auto;
+}
+
+button {
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+#undo-button {
+    background-color: bisque;
+}
+
+#reset-button {
+    background-color: darkseagreen;
 }
