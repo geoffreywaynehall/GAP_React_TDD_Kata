@@ -141,12 +141,22 @@ describe('end of game', () => {
         expect(wrapper.find('.turn-tracker').text()).toBe("X WINS!");
     });
 
-    test('if the board is filled without three in a row', () => {
+    test('if the board is filled without three in a row results in a tie', () => {
         const turnOrder = [0, 1, 2, 6, 7, 8, 3, 4, 5];
         turnOrder.forEach((square) => {
             wrapper.find('#square-' + square).simulate('click');
         })
         expect(wrapper.find('.turn-tracker').text()).toBe("TIE!");
+    });
+
+    test('the turn tracker to update until all the spaces are filled', () => {
+        const turnOrder = [0, 1, 2, 6, 7, 8, 3, 4];
+        let turn = 'X';
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+            turn = turn === 'X' ? 'O' : 'X';
+            expect(wrapper.find('.turn-tracker').text()).toBe("It is " + turn + "'s turn to go!");
+        })
     });
 
     test('the turn tracker is reset when resetting after a win', () => {
