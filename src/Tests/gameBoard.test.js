@@ -167,4 +167,12 @@ describe('end of game', () => {
         wrapper.find('#reset-button').simulate('click');
         expect(wrapper.find('.turn-tracker').text()).toBe("It is X's turn to go!");
     });
+
+    test('a user can not make a move after someone has won', () => {
+        const turnOrder = [0, 1, 3, 4, 6, 7];
+        turnOrder.forEach((square) => {
+            wrapper.find('#square-' + square).simulate('click');
+        })
+        expect(wrapper.find('#square-7').text()).toBe("");
+    });
 });
