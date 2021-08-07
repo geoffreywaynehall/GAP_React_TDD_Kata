@@ -98,7 +98,8 @@ class GameBoard extends Component {
         this.setState({
             previousTiles: previousTiles,
             tiles: tiles,
-            turn: this.state.turn === 'X' ? 'O' : 'X'
+            turn: this.state.turn === 'X' ? 'O' : 'X',
+            win: ''
         });
     }
 
