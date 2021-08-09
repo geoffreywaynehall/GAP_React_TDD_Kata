@@ -1,6 +1,21 @@
 import '../Style/gameBoard.css';
 import React, { Component } from "react";
 
+function Square(props) {
+    let addClasses = [];
+    const vert = [1,4,7];
+    const hor = [3,4,5];
+    if (vert.includes(props.num)) {
+        addClasses.push("vertical");
+    }
+    if (hor.includes(props.num)) {
+        addClasses.push("horizontal");
+    }
+    return (
+        <td id={"square-" + props.num} onClick={props.onClick} className={props.fill + ' ' + addClasses.join(' ')}>{props.fill}</td>
+    );
+}
+
 class GameBoard extends Component {
     constructor() {
         super();
@@ -109,19 +124,19 @@ class GameBoard extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td id="square-0" onClick={() => this.move(0)} className={ this.state.tiles[0] }>{ this.state.tiles[0] }</td>
-                            <td id="square-1" onClick={() => this.move(1)} className={this.state.tiles[1] + " vertical"}>{this.state.tiles[1]}</td>
-                            <td id="square-2" onClick={() => this.move(2)} className={this.state.tiles[2]}>{this.state.tiles[2]}</td>
+                            <Square num={0} onClick={() => this.move(0)} fill={this.state.tiles[0]} />
+                            <Square num={1} onClick={() => this.move(1)} fill={this.state.tiles[1]} />
+                            <Square num={2} onClick={() => this.move(2)} fill={this.state.tiles[2]} />
                         </tr>
                         <tr>
-                            <td id="square-3" onClick={() => this.move(3)} className={this.state.tiles[3] + " horizontal"}>{this.state.tiles[3]}</td>
-                            <td id="square-4" onClick={() => this.move(4)} className={this.state.tiles[4] + " horizontal vertical"}>{this.state.tiles[4]}</td>
-                            <td id="square-5" onClick={() => this.move(5)} className={this.state.tiles[5] + " horizontal"}>{this.state.tiles[5]}</td>
+                            <Square num={3} onClick={() => this.move(3)} fill={this.state.tiles[3]} />
+                            <Square num={4} onClick={() => this.move(4)} fill={this.state.tiles[4]} />
+                            <Square num={5} onClick={() => this.move(5)} fill={this.state.tiles[5]} />
                         </tr>
                         <tr>
-                            <td id="square-6" onClick={() => this.move(6)} className={this.state.tiles[6]}>{this.state.tiles[6]}</td>
-                            <td id="square-7" onClick={() => this.move(7)} className={this.state.tiles[7] + " vertical"}>{this.state.tiles[7]}</td>
-                            <td id="square-8" onClick={() => this.move(8)} className={this.state.tiles[8]}>{this.state.tiles[8]}</td>
+                            <Square num={6} onClick={() => this.move(6)} fill={this.state.tiles[6]} />
+                            <Square num={7} onClick={() => this.move(7)} fill={this.state.tiles[7]} />
+                            <Square num={8} onClick={() => this.move(8)} fill={this.state.tiles[8]} />
                         </tr>
                     </tbody>
                 </table>
