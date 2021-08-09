@@ -109,23 +109,23 @@ class GameBoard extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td id="square-0" onClick={() => this.move(0)}>{ this.state.tiles[0] }</td>
-                            <td id="square-1" onClick={() => this.move(1)} className="vertical">{this.state.tiles[1]}</td>
-                            <td id="square-2" onClick={() => this.move(2)}>{this.state.tiles[2]}</td>
+                            <td id="square-0" onClick={() => this.move(0)} className={ this.state.tiles[0] }>{ this.state.tiles[0] }</td>
+                            <td id="square-1" onClick={() => this.move(1)} className={this.state.tiles[1] + " vertical"}>{this.state.tiles[1]}</td>
+                            <td id="square-2" onClick={() => this.move(2)} className={this.state.tiles[2]}>{this.state.tiles[2]}</td>
                         </tr>
                         <tr>
-                            <td id="square-3" onClick={() => this.move(3)} className="horizontal">{this.state.tiles[3]}</td>
-                            <td id="square-4" onClick={() => this.move(4)} className="horizontal vertical">{this.state.tiles[4]}</td>
-                            <td id="square-5" onClick={() => this.move(5)} className="horizontal">{this.state.tiles[5]}</td>
+                            <td id="square-3" onClick={() => this.move(3)} className={this.state.tiles[3] + " horizontal"}>{this.state.tiles[3]}</td>
+                            <td id="square-4" onClick={() => this.move(4)} className={this.state.tiles[4] + " horizontal vertical"}>{this.state.tiles[4]}</td>
+                            <td id="square-5" onClick={() => this.move(5)} className={this.state.tiles[5] + " horizontal"}>{this.state.tiles[5]}</td>
                         </tr>
                         <tr>
-                            <td id="square-6" onClick={() => this.move(6)}>{this.state.tiles[6]}</td>
-                            <td id="square-7" onClick={() => this.move(7)} className="vertical">{this.state.tiles[7]}</td>
-                            <td id="square-8" onClick={() => this.move(8)}>{this.state.tiles[8]}</td>
+                            <td id="square-6" onClick={() => this.move(6)} className={this.state.tiles[6]}>{this.state.tiles[6]}</td>
+                            <td id="square-7" onClick={() => this.move(7)} className={this.state.tiles[7] + " vertical"}>{this.state.tiles[7]}</td>
+                            <td id="square-8" onClick={() => this.move(8)} className={this.state.tiles[8]}>{this.state.tiles[8]}</td>
                         </tr>
                     </tbody>
                 </table>
-                { this.state.win === '' ? <h2 className="turn-tracker">It is {this.state.turn}'s turn to go!</h2> : this.state.win === 'TIE' ? <h2 className="turn-tracker">TIE!</h2> : <h2 className="turn-tracker">{this.state.win} WINS!</h2> }
+                {this.state.win === '' ? <h2 className="turn-tracker">It is <span className={this.state.turn}>{this.state.turn}</span>'s turn to go!</h2> : this.state.win === 'TIE' ? <h2 className="turn-tracker">TIE!</h2> : <h2 className="turn-tracker"><span className={this.state.win}>{this.state.win}</span> WINS!</h2> }
                 <div className='controls'>
                     {this.state.previousTiles.length > 0 ? <button id="undo-button" onClick={() => this.undo()}>Undo</button> : null}
                     {this.state.previousTiles.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null}

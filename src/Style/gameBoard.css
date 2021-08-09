@@ -20,6 +20,14 @@ td {
     border-bottom: 2px solid black;
 }
 
+.X {
+    color: red;
+}
+
+.O {
+    color: blue;
+}
+
 .turn-tracker {
     text-align: center;
 }
