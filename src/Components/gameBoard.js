@@ -28,9 +28,11 @@ class GameBoard extends Component {
     }
 
     checkForWin(tiles) {
-        this.checkVertical(tiles);
-        this.checkHorizontal(tiles);
-        this.checkDiagonal(tiles);
+        if (!this.checkVertical(tiles)) {
+            if (!this.checkHorizontal(tiles)) {
+                this.checkDiagonal(tiles);
+            }
+        }
     }
 
     checkVertical(tiles) {
@@ -38,15 +40,19 @@ class GameBoard extends Component {
             this.setState({
                 win: tiles[0]
             });
+            return true;
         } else if (tiles[1] === tiles[4] && tiles[4] === tiles[7]) {
             this.setState({
                 win: tiles[1]
             });
+            return true;
         } else if (tiles[2] === tiles[5] && tiles[5] === tiles[8]) {
             this.setState({
                 win: tiles[2]
             });
+            return true;
         }
+        return false;
     }
 
     checkHorizontal(tiles) {
@@ -54,15 +60,19 @@ class GameBoard extends Component {
             this.setState({
                 win: tiles[0]
             });
+            return true;
         } else if (tiles[3] === tiles[4] && tiles[4] === tiles[5]) {
             this.setState({
                 win: tiles[3]
             });
+            return true;
         } else if (tiles[6] === tiles[7] && tiles[7] === tiles[8]) {
             this.setState({
                 win: tiles[6]
             });
+            return true;
         }
+        return false;
     }
 
     checkDiagonal(tiles) {
