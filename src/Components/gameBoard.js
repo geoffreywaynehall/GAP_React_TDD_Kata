@@ -20,72 +20,72 @@ class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
-            previousTiles: [],
-            tiles: ['','','','','','','','',''],
+            previousSquares: [],
+            squares: ['','','','','','','','',''],
             turn: 'X',
             win: ''
         };
     }
 
-    checkForWin(tiles) {
-        if (!this.checkVertical(tiles)) {
-            if (!this.checkHorizontal(tiles)) {
-                this.checkDiagonal(tiles);
+    checkForWin(squares) {
+        if (!this.checkVertical(squares)) {
+            if (!this.checkHorizontal(squares)) {
+                this.checkDiagonal(squares);
             }
         }
     }
 
-    checkVertical(tiles) {
-        if (tiles[0] === tiles[3] && tiles[3] === tiles[6]) {
+    checkVertical(squares) {
+        if (squares[0] === squares[3] && squares[3] === squares[6]) {
             this.setState({
-                win: tiles[0]
+                win: squares[0]
             });
             return true;
-        } else if (tiles[1] === tiles[4] && tiles[4] === tiles[7]) {
+        } else if (squares[1] === squares[4] && squares[4] === squares[7]) {
             this.setState({
-                win: tiles[1]
+                win: squares[1]
             });
             return true;
-        } else if (tiles[2] === tiles[5] && tiles[5] === tiles[8]) {
+        } else if (squares[2] === squares[5] && squares[5] === squares[8]) {
             this.setState({
-                win: tiles[2]
-            });
-            return true;
-        }
-        return false;
-    }
-
-    checkHorizontal(tiles) {
-        if (tiles[0] === tiles[1] && tiles[1] === tiles[2]) {
-            this.setState({
-                win: tiles[0]
-            });
-            return true;
-        } else if (tiles[3] === tiles[4] && tiles[4] === tiles[5]) {
-            this.setState({
-                win: tiles[3]
-            });
-            return true;
-        } else if (tiles[6] === tiles[7] && tiles[7] === tiles[8]) {
-            this.setState({
-                win: tiles[6]
+                win: squares[2]
             });
             return true;
         }
         return false;
     }
 
-    checkDiagonal(tiles) {
-        if (tiles[0] === tiles[4] && tiles[4] === tiles[8]) {
+    checkHorizontal(squares) {
+        if (squares[0] === squares[1] && squares[1] === squares[2]) {
             this.setState({
-                win: tiles[0]
+                win: squares[0]
             });
-        } else if (tiles[2] === tiles[4] && tiles[4] === tiles[6]) {
+            return true;
+        } else if (squares[3] === squares[4] && squares[4] === squares[5]) {
             this.setState({
-                win: tiles[2]
+                win: squares[3]
+            });
+            return true;
+        } else if (squares[6] === squares[7] && squares[7] === squares[8]) {
+            this.setState({
+                win: squares[6]
+            });
+            return true;
+        }
+        return false;
+    }
+
+    checkDiagonal(squares) {
+        if (squares[0] === squares[4] && squares[4] === squares[8]) {
+            this.setState({
+                win: squares[0]
+            });
+        } else if (squares[2] === squares[4] && squares[4] === squares[6]) {
+            this.setState({
+                win: squares[2]
             });
         } else {
-            if (!tiles.includes('') && this.state.win === '') {
+            if (!squares.includes('') && this.state.win === '') {
                 this.setState({
                     win: 'TIE'
                 });
@@ -93,36 +93,36 @@ class GameBoard extends Component {
         }
     }
 
-    move(square: Number) {
-        if (this.state.tiles[square] === '' && this.state.win === '') {
-            let oldTiles = this.state.previousTiles;
-            oldTiles.push(this.state.tiles);
-            let newTiles = this.state.tiles.slice();
-            newTiles[square] = this.state.turn;
+    move(squareNum: Number) {
+        if (this.state.squares[squareNum] === '' && this.state.win === '') {
+            let oldSquares = this.state.previousSquares;
+            oldSquares.push(this.state.squares);
+            let newSquares = this.state.squares.slice();
+            newSquares[squareNum] = this.state.turn;
             this.setState({
-                previousTiles: oldTiles,
-                tiles: newTiles,
+                previousSquares: oldSquares,
+                squares: newSquares,
                 turn: this.state.turn === 'X' ? 'O' : 'X'
             });
-            this.checkForWin(newTiles);
+            this.checkForWin(newSquares);
         }
     }
 
     reset() {
         this.setState({
-            previousTiles: [],
-            tiles: ['', '', '', '', '', '', '', '', ''],
+            previousSquares: [],
+            squares: ['', '', '', '', '', '', '', '', ''],
             turn: 'X',
             win: ''
         });
     }
 
     undo() {
-        let previousTiles = this.state.previousTiles;
-        let tiles = previousTiles.pop();
+        let previousSquares = this.state.previousSquares;
+        let squares = previousSquares.pop();
         this.setState({
-            previousTiles: previousTiles,
-            tiles: tiles,
+            previousSquares: previousSquares,
+            squares: squares,
             turn: this.state.turn === 'X' ? 'O' : 'X',
             win: ''
         });
@@ -130,7 +130,7 @@ class GameBoard extends Component {
 
     renderSquare(squareNum) {
         return (
-            <Square key={squareNum} num={squareNum} onClick={() => this.move(squareNum)} fill={this.state.tiles[squareNum]} />
+            <Square key={squareNum} num={squareNum} onClick={() => this.move(squareNum)} fill={this.state.squares[squareNum]} />
         );
     }
 
@@ -153,8 +153,8 @@ class GameBoard extends Component {
                 </table>
                 {this.state.win === '' ? <h2 className="turn-tracker">It is <span className={this.state.turn}>{this.state.turn}</span>'s turn to go!</h2> : this.state.win === 'TIE' ? <h2 className="turn-tracker">TIE!</h2> : <h2 className="turn-tracker"><span className={this.state.win}>{this.state.win}</span> WINS!</h2> }
                 <div className='controls'>
-                    {this.state.previousTiles.length > 0 ? <button id="undo-button" onClick={() => this.undo()}>Undo</button> : null}
-                    {this.state.previousTiles.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null}
+                    {this.state.previousSquares.length > 0 ? <button id="undo-button" onClick={() => this.undo()}>Undo</button> : null}
+                    {this.state.previousSquares.length > 0 ? <button id="reset-button" onClick={() => this.reset()}>Reset</button> : null}
                 </div>
             </div>
         );
