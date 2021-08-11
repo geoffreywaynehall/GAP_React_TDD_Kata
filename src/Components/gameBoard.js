@@ -128,26 +128,27 @@ class GameBoard extends Component {
         });
     }
 
+    renderSquare(squareNum) {
+        return (
+            <Square key={squareNum} num={squareNum} onClick={() => this.move(squareNum)} fill={this.state.tiles[squareNum]} />
+        );
+    }
+
     render() {
+        let rows = [];
+        for (var row = 0; row < 3; row++) {
+            let squares = []
+            for (var col = 0; col < 3; col++) {
+                squares.push(this.renderSquare((row*3)+col));
+            }
+            rows.push(<tr key={row-1}>{ squares }</tr >);
+        }
+
         return (
             <div className="GameBoard">
                 <table>
                     <tbody>
-                        <tr>
-                            <Square num={0} onClick={() => this.move(0)} fill={this.state.tiles[0]} />
-                            <Square num={1} onClick={() => this.move(1)} fill={this.state.tiles[1]} />
-                            <Square num={2} onClick={() => this.move(2)} fill={this.state.tiles[2]} />
-                        </tr>
-                        <tr>
-                            <Square num={3} onClick={() => this.move(3)} fill={this.state.tiles[3]} />
-                            <Square num={4} onClick={() => this.move(4)} fill={this.state.tiles[4]} />
-                            <Square num={5} onClick={() => this.move(5)} fill={this.state.tiles[5]} />
-                        </tr>
-                        <tr>
-                            <Square num={6} onClick={() => this.move(6)} fill={this.state.tiles[6]} />
-                            <Square num={7} onClick={() => this.move(7)} fill={this.state.tiles[7]} />
-                            <Square num={8} onClick={() => this.move(8)} fill={this.state.tiles[8]} />
-                        </tr>
+                        { rows }
                     </tbody>
                 </table>
                 {this.state.win === '' ? <h2 className="turn-tracker">It is <span className={this.state.turn}>{this.state.turn}</span>'s turn to go!</h2> : this.state.win === 'TIE' ? <h2 className="turn-tracker">TIE!</h2> : <h2 className="turn-tracker"><span className={this.state.win}>{this.state.win}</span> WINS!</h2> }
